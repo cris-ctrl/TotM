@@ -10,6 +10,7 @@ y = 0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("TotM")
 
 #assets
 icon = pygame.image.load("assets/logos/logo_64.png")
@@ -48,10 +49,12 @@ while run:
          lastt = pygame.time.get_ticks()
          if frame >= len(alist):
              frame = 0
-
-    
+     
      screen.blit(alist[frame],(x,y))
-
+     pygame.draw.rect(screen, (255,0,0),(150,40, 20, 160))
+     pygame.draw.rect(screen, (255,0,0),(100,300, 500, 20))
+     pygame.draw.rect(screen, (255,0,0),(500,40, 20, 300))
+     
 
 
      #event handling
