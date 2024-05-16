@@ -25,31 +25,31 @@ def get_img(sheet, frame, width, height, scale, color):
     return image
 
 
-frame0 = get_img(sprite_sheet, 0, 24, 24, 2, (255,255,255))
-frame1 = get_img(sprite_sheet, 1, 24, 24, 2, (255, 255, 255))
-frame2 = get_img(sprite_sheet, 2, 24, 24, 2, (255,255,255))
-frame3 = get_img(sprite_sheet, 3, 24, 24, 2, (255,255,255))
+
 
 #animation bruv
 alist = []
 aframes = 6
 for x in range(aframes):
     alist.append(get_img(sprite_sheet,x, 24, 24, 2, (255,255,255)))
-
+cooldown = 1000
+lastt = pygame.time.get_ticks()
+frame = 0
 
 
 
 #main game loop
 while run:
      screen.fill(bg)
-     screen.blit(frame0,(0,0))
-     screen.blit(frame1, (24 ,0))
-     screen.blit(frame2,(48,0))
-     screen.blit(frame3,(72,0))
      #playing animation yuh
-     for x in range(6):
-         pygame.display.update()
-         screen.blit(alist[x], (0,48))         
+     if pygame.time.get_ticks() >= lastt:
+         frame += 1
+         lastt = pygame.time.get_ticks()
+         if frame >= len(alist):
+             frame = 0
+
+    
+     screen.blit(alist[frame],(0,0))
 
 
 
