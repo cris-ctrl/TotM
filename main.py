@@ -5,7 +5,6 @@ pygame.init()
 clock = pygame.time.Clock()
 
 #innit
-player = pygame.Rect((100,110, 50, 50))
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -49,7 +48,7 @@ while run:
              frame = 0
 
     
-     screen.blit(alist[frame],(0,0))
+     screen.blit(alist[frame],(x,0))
 
 
 
