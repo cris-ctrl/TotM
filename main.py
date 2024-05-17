@@ -49,6 +49,7 @@ frame = 0
 
 #main game loop
 while run:  
+     lastk = -1
      detec = pygame.Rect(x+4, y+6, 21 * 2, 21 * 2)
      coll = False
      for rect in map:
