@@ -5,6 +5,7 @@
 
 <img src="assets/char/mainsheet_tom.png" alt="Tomb of the Mask" style="width: 50%;" />
 </div>
+
 ## Description
 
 Welcome to the PC fan-made port of the mobile game: **Tomb of the Mask**. This project is still in early development, so, check in later if you wanna play an smoother version (if i actually finish it 💀💀)lanned for the future. Stay tuned!
