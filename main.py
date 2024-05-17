@@ -50,12 +50,14 @@ frame = 0
 
 #main game loop
 while run:  
-     coll = 0
+     coll = False
      for rect in map:
          if detc.colliderect(rect):
-             coll = 1
+             coll = True
              break  
-     if coll == 1:
+         else:
+             coll = False
+     if coll:
          print("collided")
      else:
          print("didnt collide")
