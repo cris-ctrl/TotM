@@ -31,4 +31,4 @@ for now, i plan im implementing all the same gameplay mechanics, but after that,
 If you have any questions, suggestions, or feedback, feel free to reach out:
 
 - **Email**: [cristianwalter30@gmail.com](mailto:cristianwalter30@gail.com)
-- **GitHub Issues**: [Submit an issue](https://github.com/cris-ctrl/TotM/issues)
+- **GitHub Issues**: [Submit an issue](https://github.com/cris-ctrl/TotM/issues/new)
