@@ -31,11 +31,10 @@ def get_img(sheet, frame, width, height, scale, color):
 
 
 #test walls:
-detc = pygame.Rect(x, y, 24 * 2, 24 * 2)
-ret1 = pygame.Rect(500,40, 20, 300)
-ret2 = pygame.Rect(100,300, 500, 20)
-ret3 = pygame.Rect(150,40, 20, 160)
-map = [ret1, ret2, ret3]
+map = []
+map.append(pygame.Rect(500,40, 20, 300))
+map.append(pygame.Rect(100,300, 500, 20))
+map.append(pygame.Rect(150,40, 20, 160))
 
 #animation bruv
 alist = []
@@ -50,9 +49,10 @@ frame = 0
 
 #main game loop
 while run:  
+     detec = pygame.Rect(x+4, y+6, 21 * 2, 21 * 2)
      coll = False
      for rect in map:
-         if detc.colliderect(rect):
+         if detec.colliderect(rect):
              coll = True
              break  
          else:
@@ -70,9 +70,8 @@ while run:
              frame = 0
      
     #mr picasso boy (draws stuff)
+     pygame.draw.rect(screen,(50,50,50),detec)
      screen.blit(alist[frame],(x,y))
-
-     
      for ret in map:
          pygame.draw.rect(screen,(255,0,0),ret)
 
