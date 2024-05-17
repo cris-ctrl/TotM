@@ -30,11 +30,11 @@ def get_img(sheet, frame, width, height, scale, color):
     return image
 
 
-#test walls:
-map = []
-map.append(pygame.Rect(500,40, 20, 300))
-map.append(pygame.Rect(100,300, 500, 20))
-map.append(pygame.Rect(150,40, 20, 160))
+
+wall = []
+wall.append(pygame.Rect(500,40, 20, 300))
+wall.append(pygame.Rect(100,300, 500, 20))
+wall.append(pygame.Rect(150,40, 20, 160))
 
 #animation bruv
 alist = []
@@ -50,9 +50,9 @@ frame = 0
 #main game loop
 while run:  
      lastk = -1
-     detec = pygame.Rect(x+4, y+6, 21 * 2, 21 * 2)
+     detec = pygame.Rect(px+4, py+6, 21 * 2, 21 * 2)
      coll = False
-     for rect in map:
+     for rect in wall:
          if detec.colliderect(rect):
              coll = True
              break  
@@ -71,14 +71,23 @@ while run:
              frame = 0
      
     #mr picasso boy (draws stuff)
-     pygame.draw.rect(screen,(50,50,50),detec)
+     pygame.draw.rect(screen,(255,255,255),detec)
      screen.blit(alist[frame],(x,y))
-     for ret in map:
+     for ret in wall:
          pygame.draw.rect(screen,(255,0,0),ret)
 
      #"snapping" movimentation system -> """path finder"""
-     # 0 = up, 1 = down, 2 = left, 4 = right
-    
+     # 0 = up, 1 = down, 2 = left,3 = right
+     if lastk != -1:
+        while coll == False:
+             px += 3
+             for rect in wall:
+                 if detec.colliderect(rect):
+                     coll = True
+                     break  
+                 else:
+                    coll = False
+         
 
 
      #event handling
@@ -88,10 +97,36 @@ while run:
          lastk = 2
      if key[pygame.K_d] == True: 
          x += 1
+         lastk = 3
      if key[pygame.K_s] == True: 
          y = y + 1
+         lastk = 1
      if key[pygame.K_w] == True: 
          y = y - 1
+         lastk = 0
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     if key[pygame.K_g] == True: 
+         px = px - 1
+         lastk = 2
+     if key[pygame.K_j] == True: 
+         px += 1
+         lastk = 3
+     if key[pygame.K_h] == True: 
+         py = py + 1
+         lastk = 1
+     if key[pygame.K_y] == True: 
+         py = py - 1
+         lastk = 0
+
+
      for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
