@@ -5,8 +5,11 @@ pygame.init()
 clock = pygame.time.Clock()
 
 #innit
+lastk = 5
 x = 0
 y = 0
+px = 0
+py = 0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -27,7 +30,12 @@ def get_img(sheet, frame, width, height, scale, color):
     return image
 
 
-
+#test walls:
+detc = pygame.Rect(x, y, 24 * 2, 24 * 2)
+ret1 = pygame.Rect(500,40, 20, 300)
+ret2 = pygame.Rect(100,300, 500, 20)
+ret3 = pygame.Rect(150,40, 20, 160)
+map = [ret1, ret2, ret3]
 
 #animation bruv
 alist = []
@@ -41,7 +49,16 @@ frame = 0
 
 
 #main game loop
-while run:
+while run:  
+     coll = 0
+     for rect in map:
+         if detc.colliderect(rect):
+             coll = 1
+             break  
+     if coll == 1:
+         print("collided")
+     else:
+         print("didnt collide")
      screen.fill(bg)
      #playing animation yuh
      if pygame.time.get_ticks() >= lastt + cooldown:
@@ -50,17 +67,23 @@ while run:
          if frame >= len(alist):
              frame = 0
      
+    #mr picasso boy (draws stuff)
      screen.blit(alist[frame],(x,y))
-     pygame.draw.rect(screen, (255,0,0),(150,40, 20, 160))
-     pygame.draw.rect(screen, (255,0,0),(100,300, 500, 20))
-     pygame.draw.rect(screen, (255,0,0),(500,40, 20, 300))
+
      
+     for ret in map:
+         pygame.draw.rect(screen,(255,0,0),ret)
+
+     #"snapping" movimentation system -> """path finder"""
+     # 0 = up, 1 = down, 2 = left, 4 = right
+    
 
 
      #event handling
      key = pygame.key.get_pressed()
      if key[pygame.K_a] == True: 
          x = x - 1
+         lastk = 2
      if key[pygame.K_d] == True: 
          x += 1
      if key[pygame.K_s] == True: 
