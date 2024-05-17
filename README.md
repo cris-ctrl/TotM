@@ -24,7 +24,7 @@ For now, there is nothing actually "playble" but if you wanna see how its going,
 Contributions are welcome!, however, have in mind im still in the process of learing, and this is early dev, so dont expect an very organized code. However, if you wanna help either way, just fork this repo, do your contributions, and do a pull request, I'll see it soon enough :)
 
 ## Planned stuff:
-for now, i plan im implementing all the same gameplay mechanics, but after that, i plan in rebuilding the levels, and main menu, as closely as my poor artistic skills will allow
+for now, i plan in implementing all the same gameplay mechanics, but after that, i plan in rebuilding the levels, and main menu, as closely as my poor artistic skills will allow
 
 ## Contact
 
