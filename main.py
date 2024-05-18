@@ -78,16 +78,7 @@ while run:
 
      #"snapping" movimentation system -> """path finder"""
      # 0 = up, 1 = down, 2 = left,3 = right
-     lastk = -1
-     if lastk != -1:
-        while coll == False:
-             px += 3
-             for rect in wall:
-                 if detec.colliderect(rect):
-                     coll = True
-                     break  
-                 else:
-                    coll = False
+     
      #event handling
      key = pygame.key.get_pressed()
      if key[pygame.K_a] == True: 
