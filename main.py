@@ -1,4 +1,5 @@
 import pygame, sys
+from MIT import *
 #becum
 run = True
 pygame.init()
@@ -29,12 +30,6 @@ def get_img(sheet, frame, width, height, scale, color):
     image.set_colorkey(color)
     return image
 
-
-
-wall = []
-wall.append(pygame.Rect(500,40, 20, 300))
-wall.append(pygame.Rect(100,300, 500, 20))
-wall.append(pygame.Rect(150,40, 20, 160))
 
 #animation bruv
 alist = []
