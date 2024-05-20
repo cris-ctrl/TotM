@@ -1,9 +1,10 @@
-#This is a "trow away file" used to test concepts and code blocks (likely kindly made for me from chat gpt lmfaooo)before implementing it on the full code.
+#This is a "trow away file" used to test concepts and code before implementing it on the full code.
 #most likely will be empty if im not working with anything complex atm
+import pygame
+import sys
+from MIT import *  # Assuming wall is defined in this module
 
-import pygame, sys
-
-# Initialize pygame
+# Initialize Pygame
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -30,9 +31,6 @@ def get_img(sheet, frame, width, height, scale, color):
     image.set_colorkey(color)
     return image
 
-# Create walls
-wall = [pygame.Rect(500, 40, 20, 300), pygame.Rect(100, 300, 500, 20), pygame.Rect(150, 40, 20, 160)]
-
 # Load animation frames
 alist = [get_img(sprite_sheet, x, 24, 24, 2, (255, 255, 255)) for x in range(6)]
 
@@ -44,44 +42,51 @@ lastt = pygame.time.get_ticks()
 
 # Main game loop
 while run:
-    detec = pygame.Rect(x, y, 24 * 2, 24 * 2)
+    dx, dy = 0, 0
+    detec = pygame.Rect(x + 4, y + 6, 21 * 2, 21 * 2)
+    moved = False
+
+    # Event handling
     key = pygame.key.get_pressed()
-    direction = None
-    
-    if key[pygame.K_w]: direction = (0, -1)
-    elif key[pygame.K_s]: direction = (0, 1)
-    elif key[pygame.K_a]: direction = (-1, 0)
-    elif key[pygame.K_d]: direction = (1, 0)
-    
-    if direction:
-        dx, dy = direction
-        
-        
+    if key[pygame.K_a]:
+        dx = -1
+        moved = True
+    if key[pygame.K_d]:
+        dx = 1
+        moved = True
+    if key[pygame.K_s]:
+        dy = 1
+        moved = True
+    if key[pygame.K_w]:
+        dy = -1
+        moved = True
+
+    # Snapping movement system
+    if moved:
         while not any(detec.colliderect(rect) for rect in wall):
             detec.x += dx
             detec.y += dy
-        
         detec.x -= dx
         detec.y -= dy
-        x, y = detec.x, detec.y
-    
+        x, y = detec.x - 4, detec.y - 6
+
     screen.fill(bg)
-    
-    # Animate sprite
+
     if pygame.time.get_ticks() >= lastt + cooldown:
-        frame = (frame + 1) % len(alist)
-        lastt = pygame.time.get_ticks()
-    
+         frame += 1
+         lastt = pygame.time.get_ticks()
+         if frame >= len(alist):
+             frame = 0
     # Draw everything
     pygame.draw.rect(screen, (255, 255, 255), detec)
     screen.blit(alist[frame], (x, y))
-    for rect in wall:
+    for rect in wall:  # wall should be imported from MIT
         pygame.draw.rect(screen, (255, 0, 0), rect)
-    
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-    
+
     pygame.display.update()
     clock.tick(60)
 
