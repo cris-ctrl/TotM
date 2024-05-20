@@ -39,24 +39,11 @@ for x in range(aframes):
 cooldown = 70
 lastt = pygame.time.get_ticks()
 frame = 0
-
-
-
 #main game loop
 while run:  
-     lastk = -1
+     dx , dy = 0, 0
      detec = pygame.Rect(x+4, y+6, 21 * 2, 21 * 2)
-     coll = False
-     for rect in wall:
-         if detec.colliderect(rect):
-             coll = True
-             break  
-         else:
-             coll = False
-     if coll:
-         print("collided")
-     else:
-         print("didnt collide")
+     moved = False
      screen.fill(bg)
      #playing animation yuh
      if pygame.time.get_ticks() >= lastt + cooldown:
@@ -73,21 +60,29 @@ while run:
 
      #"snapping" movimentation system -> """path finder"""
      # 0 = up, 1 = down, 2 = left,3 = right
+     if moved:
+         while not any(detec.colliderect(rect) for rect in wall):
+            detec.x += dx
+            detec.y += dy
+         moved = False
+         detec.x -= dx
+         detec.y -= dy
+         x, y = detec.x - 4, detec.y - 6
      
      #event handling
      key = pygame.key.get_pressed()
      if key[pygame.K_a] == True: 
-         x = x - 1
-         lastk = 2
+         dx = -1
+         moved = True
      if key[pygame.K_d] == True: 
-         x += 1
-         lastk = 3
+         dx = 1
+         moved = True
      if key[pygame.K_s] == True: 
-         y = y + 1
-         lastk = 1
+         dy = 1
+         moved = True
      if key[pygame.K_w] == True: 
-         y = y - 1
-         lastk = 0
+         dy = -1
+         moved = True
 
      for event in pygame.event.get():
         if event.type == pygame.QUIT:
