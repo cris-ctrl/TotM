@@ -56,8 +56,6 @@ while run:
     if key[pygame.K_d]:
         dx = 1
         moved = True
-        for x in range(6):
-            alist[x] = rotate(x, 90)
     if key[pygame.K_s]:
         dy = 1
         moved = True
