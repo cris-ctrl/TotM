@@ -28,6 +28,11 @@ def get_img(sheet, frame, width, height, scale, color):
     image.set_colorkey(color)
     return image
 
+#rotate tool
+def rotate(frame, angle):
+    rotated = [pygame.transform.rotate(alist[frame], angle)]
+    return rotated
+
 # Load animation frames
 alist = [get_img(sprite_sheet, x, 24, 24, 2, (255, 255, 255)) for x in range(6)]
 
@@ -51,6 +56,8 @@ while run:
     if key[pygame.K_d]:
         dx = 1
         moved = True
+        for x in range(6):
+            alist[x] = rotate(x, 90)
     if key[pygame.K_s]:
         dy = 1
         moved = True
@@ -76,7 +83,7 @@ while run:
              frame = 0
     # Draw everything
     pygame.draw.rect(screen, (255, 255, 255), detec)
-    screen.blit(alist[frame], (x, y))
+    screen.blit((alist[frame]), (x, y))
     for rect in wall:  # wall should be imported from MIT
         pygame.draw.rect(screen, (255, 0, 0), rect)
 
@@ -88,3 +95,6 @@ while run:
     clock.tick(60)
 
 pygame.quit()
+
+
+
