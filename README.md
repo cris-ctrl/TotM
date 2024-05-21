@@ -1,4 +1,5 @@
 # Tomb of the Mask - PC Fan Port
+## Devlopment is currently paused
 *Disclaimer: This is a fan-made project and is not affiliated with or made by the original creators of Tomb of the Mask!!!*
 
 <div style="text-align: center;">
